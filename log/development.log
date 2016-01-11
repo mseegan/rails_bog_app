@@ -1746,3 +1746,30 @@ ActionController::RoutingError (No route matches [PATCH] "/creatures/1"):
   Rendered /home/matt/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
   Rendered /home/matt/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /home/matt/.rvm/gems/ruby-2.2.3/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (78.5ms)
+
+
+Started GET "/creatures/1/edit" for 127.0.0.1 at 2016-01-10 23:44:40 -0800
+Processing by CreaturesController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCreature Load (0.3ms)[0m  [1mSELECT  "creatures".* FROM "creatures" WHERE "creatures"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered creatures/edit.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 67ms (Views: 34.2ms | ActiveRecord: 1.2ms)
+
+
+Started PATCH "/creatures/1" for 127.0.0.1 at 2016-01-10 23:44:46 -0800
+Processing by CreaturesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rnt/mxShdAEfbIlVE9PKJVZ2JyJ+2TOpRyvmoXxNmbWDFC0h+0sKO+MLEsS4s2eLMOBIID4N7z4/OBFx4d9Z8A==", "creature"=>{"name"=>"Steve", "description"=>"gambling addict"}, "commit"=>"Save Creature", "id"=>"1"}
+  [1m[35mCreature Load (0.1ms)[0m  SELECT  "creatures".* FROM "creatures" WHERE "creatures"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (6.1ms)[0m  UPDATE "creatures" SET "name" = ?, "updated_at" = ? WHERE "creatures"."id" = ?  [["name", "Steve"], ["updated_at", "2016-01-11 07:44:46.644330"], ["id", 1]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/creatures/1
+Completed 302 Found in 23ms (ActiveRecord: 11.3ms)
+
+
+Started GET "/creatures/1" for 127.0.0.1 at 2016-01-10 23:44:46 -0800
+Processing by CreaturesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCreature Load (2.3ms)[0m  SELECT  "creatures".* FROM "creatures" WHERE "creatures"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered creatures/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 30ms (Views: 26.2ms | ActiveRecord: 2.3ms)
